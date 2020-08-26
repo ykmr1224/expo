@@ -3,9 +3,9 @@ Render a cute creature into a canvas element.
 
 ## Usage
 
-[Simple Example](index.html)
+[Simple Example](https://ykmr1224.github.io/expo/index.html)
 
-[More Examples](sample.html)
+[More Examples](https://ykmr1224.github.io/expo/sample.html)
 
 Example:
 ```

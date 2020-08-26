@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://ykmr1224.github.io/expo/expo.js"></script>
+</head>
+<body>
+<div>
+    <h5>Basic</h5>
+    <canvas class="basic" width="320" height="350"></canvas>
+    <script lang="javascript">
+        expo($('canvas.basic')[0]);
+    </script>
+
+    <h5>The size fits to the Canvas width</h5>
+    <canvas class="sized" width="150" height="165"></canvas>
+    <canvas class="sized" width="500" height="550"></canvas>
+    <script lang="javascript">
+      $.each($('canvas.sized'), (i, canvas) => {
+        expo(canvas);
+      });
+    </script>
+
+    <h5>Colors can be customized</h5>
+    <canvas class="blue" width="320" height="350"></canvas>
+    <script lang="javascript">
+      expo($('canvas.blue')[0], {
+        body: '#0082ff',
+        outerEye: '#aaff82',
+        innerEye: '#ff8200',
+        blinkEye: '#000000'
+      });
+    </script>
+</div>
+</body>
+</html>

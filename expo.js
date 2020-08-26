@@ -141,17 +141,21 @@ function expo(canvas, style) {
     maxDuration: 300,
   };
 
-  let expo = new Expo(canvas.getContext('2d'), style || DEFAULT_STYLE, canvas.width, canvas.height);
+  let setup = (canvas, style) => {
+    let expo = new Expo(canvas.getContext('2d'), style || DEFAULT_STYLE, canvas.width, canvas.height);
 
-  window.addEventListener('mousemove', (e) => {
-    expo.draw(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-  });
+    window.addEventListener('mousemove', (e) => {
+      expo.draw(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+    });
 
-  window.setInterval(() => {
-    if (Math.random() < BLINK_CONFIG.possibility) {
-      expo.blink(BLINK_CONFIG.minDuration + BLINK_CONFIG.maxDuration * Math.random());
-    }
-  }, BLINK_CONFIG.evaluationPeriod);
+    window.setInterval(() => {
+      if (Math.random() < BLINK_CONFIG.possibility) {
+        expo.blink(BLINK_CONFIG.minDuration + BLINK_CONFIG.maxDuration * Math.random());
+      }
+    }, BLINK_CONFIG.evaluationPeriod);
 
-  expo.draw();
+    return expo;
+  };
+
+  setup(canvas, style).draw();
 }

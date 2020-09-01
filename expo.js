@@ -19,6 +19,12 @@ function expo(canvas, style) {
       this.ctx.fill();
     }
 
+    strokeArc(x, y, rx, ry, startAngle, endAngle) {
+      this.ctx.beginPath();
+      this.ctx.ellipse(x, y, rx, ry, 0, startAngle, endAngle);
+      this.ctx.stroke();
+    }
+
     line(x0, y0, x1, y1) {
       this.ctx.beginPath();
       this.ctx.moveTo(x0, y0);
@@ -102,7 +108,7 @@ function expo(canvas, style) {
       let ry = position[3];
       if (this.blinking) {
         this.drawer.strokeStyle(this.style.blinkEye, 1);
-        this.drawer.line(x-rx, y + ry*0.2, x+rx, y + ry*0.2);
+        this.drawer.strokeArc(x, y, rx, ry*0.2, Math.PI*0.1, Math.PI*0.9);
       } else {
         this.drawer.fillStyle(this.style.outerEye);
         this.drawer.fillOval(x, y, rx, ry);

@@ -10,6 +10,9 @@
 
     <script lang="javascript">
       expo(document.getElementById('target'));
+
+      // Disable vertical scroll
+      document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
     </script>
 </body>
 </html>

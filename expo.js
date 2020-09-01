@@ -147,16 +147,26 @@ function expo(canvas, style) {
     maxDuration: 300,
   };
 
+  let randomBlink = (expo) => {
+    expo.blink(BLINK_CONFIG.minDuration + BLINK_CONFIG.maxDuration * Math.random());
+  };
+
   let setup = (canvas, style) => {
     let expo = new Expo(canvas.getContext('2d'), style || DEFAULT_STYLE, canvas.width, canvas.height);
 
-    window.addEventListener('mousemove', (e) => {
+    let listener = (e) => {
       expo.draw(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+    };
+
+    window.addEventListener('mousemove', listener);
+    window.addEventListener('touchmove', e => listener(e.touches[0]));
+    canvas.addEventListener('mousedown', (e) => {
+      randomBlink(expo);
     });
 
     window.setInterval(() => {
       if (Math.random() < BLINK_CONFIG.possibility) {
-        expo.blink(BLINK_CONFIG.minDuration + BLINK_CONFIG.maxDuration * Math.random());
+        randomBlink(expo);
       }
     }, BLINK_CONFIG.evaluationPeriod);
 
